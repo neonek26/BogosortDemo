@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bogosort Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      textarea {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        line-height: 1.4;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+      }
+
+      button {
+        display: inline-block;
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+      }
+
+      button:hover {
+        background-color: #3e8e41;
+      }
+
+      #output {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bogosort Demo</h1>
+      <h2>Bogosort is a really ineffective algorithm!</h2>
+      <p>The algorithm starts having problems when you enter more than 10 numbers.</p>
+      <p>Do not put more than one same number!</p>
+      <p>Enter a list of numbers to be sorted:</p>
+      <textarea id="input" rows="4" cols="50"></textarea>
+      <button onclick="insertRandomNumber()">Insert Random Number</button>
+      <button onclick="sortNumbers()">Sort</button>
+      <p>Sorted numbers:</p>
+      <div id="output"></div>
+    </div>
+    <script>
+      function insertRandomNumber() {
+        const input = document.getElementById("input");
+        const arr = input.value ? input.value.split(",").map(x => parseInt(x)) : [];
+        let randomNumber;
+        do {
+          randomNumber = Math.floor(Math.random() * 100);
+        } while (arr.includes(randomNumber));
+        input.value = arr.length ? input.value + "," + randomNumber : randomNumber;
+      }
+
+      function sortNumbers() {
+        const input = document.getElementById("input").value;
+        const arr = input.split(",").map(x => parseInt(x));
+        const sortedArr = bogosort(arr);
+        document.getElementById("output").innerHTML = sortedArr.join(", ");
+      }
+    </script>
+    <script src="bogosort.js"></script>
+  </body>
+</html>
