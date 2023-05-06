@@ -20,5 +20,4 @@ function bogosort(arr) {
       arr = shuffle(arr);
     }
     return arr;
-  }
-  
+  )
